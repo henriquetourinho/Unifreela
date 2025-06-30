@@ -1,0 +1,42 @@
+{
+    "Pergunta 1": {
+        "pergunta": "1 - Qual é seu nome?",
+        "resposta": "Henrique"
+    },
+    "Pergunta 2": {
+        "pergunta": "2 - Qual é o seu e-mail?",
+        "resposta": "ihenriquetourinho@gmail.com"
+    },
+    "Pergunta 3": {
+        "pergunta": "3 - Quantos anos você tem?",
+        "resposta": "20-25"
+    },
+    "Pergunta 4": {
+        "pergunta": "4 - Qual seu gênero?",
+        "resposta": "Masculino"
+    },
+    "Pergunta 5": {
+        "pergunta": "5 - Você costuma fazer compras na Unijorge?",
+        "resposta": "Sim"
+    },
+    "Pergunta 6": {
+        "pergunta": "6 - Quanto por semana costuma gastar na faculdade?",
+        "resposta": "R$ 35,00-R$ 45,00"
+    },
+    "Pergunta 7": {
+        "pergunta": "7 - Quais meios de pagamentos você mais usa por aqui?",
+        "resposta": "Papel Moeda"
+    },
+    "Pergunta 8": {
+        "pergunta": "8 - Você gostaria de ter algum método de divulgar os serviços que você sabe fazer para fazer um extra?",
+        "resposta": "Sim"
+    },
+    "Pergunta 9": {
+        "pergunta": "9 - Você contrataria alguém da Unijorge para fazer algum serviço para você, como currículo, artes gráficas etc.?",
+        "resposta": "Sim"
+    },
+    "Pergunta 10": {
+        "pergunta": "10 - O que você mais te agrada em um serviço?",
+        "resposta": "Tempo"
+    }
+}

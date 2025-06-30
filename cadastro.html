@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | UniFreela</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+             :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+       
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+       
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+       
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+       
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+       
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+       
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+       
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+       
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+       
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+       
+        nav ul li {
+            margin-left: 25px;
+        }
+       
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+       
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+       
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+       
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+       
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+       
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+       
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+       
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+       
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+       
+        .auth-buttons .btn {
+            margin-left: 10px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+       
+        .btn-outline {
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+        }
+       
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+       
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+       
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+       
+        /* Main Content */
+        .main {
+            margin-top: 80px;
+            padding: 40px 0;
+        }
+       
+        .register-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+       
+        .register-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px;
+            width: 100%;
+            text-align: center;
+        }
+       
+        .register-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+       
+        .register-header p {
+            opacity: 0.9;
+        }
+       
+        .register-sidebar {
+            background-color: var(--light);
+            padding: 30px;
+            width: 300px;
+        }
+       
+        .register-sidebar h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+       
+        .benefits-list {
+            list-style: none;
+        }
+       
+        .benefits-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+       
+        .benefit-icon {
+            background-color: var(--secondary);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+       
+        .register-form {
+            flex: 1;
+            padding: 30px;
+            min-width: 300px;
+        }
+       
+        .form-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+       
+        .form-group {
+            margin-bottom: 20px;
+        }
+       
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+       
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+       
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+       
+        .required::after {
+            content: '*';
+            color: var(--accent);
+            margin-left: 4px;
+        }
+       
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+       
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+       
+        .photo-upload {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+       
+        .photo-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #eee;
+            overflow: hidden;
+            position: relative;
+        }
+       
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+       
+        .photo-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 2rem;
+        }
+       
+        .upload-btn {
+            flex: 1;
+        }
+       
+        .upload-btn input[type="file"] {
+            display: none;
+        }
+       
+        .upload-btn label {
+            display: block;
+            padding: 10px 15px;
+            background-color: var(--light);
+            border: 1px dashed #999;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+       
+        .upload-btn label:hover {
+            background-color: #e0e0e0;
+        }
+       
+        .form-footer {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+       
+        .terms {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+       
+        .terms a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+       
+        .terms a:hover {
+            text-decoration: underline;
+        }
+       
+        .submit-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+       
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+       
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+       
+        .login-link a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+       
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+       
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+           
+            nav ul {
+                margin: 15px 0;
+            }
+           
+            .auth-buttons {
+                margin-top: 15px;
+            }
+           
+            .register-sidebar {
+                width: 100%;
+                order: 2;
+            }
+           
+            .register-form {
+                order: 1;
+            }
+           
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/40" alt="UniFreela Logo">
+                <div class="logo-text">
+                    <h1>UniFreela</h1>
+                    <p>Conectando talentos da Unijorge</p>
+                </div>
+            </div>
+           
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Explorar</a></li>
+                    <li><a href="#">Como Funciona</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+           
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Entrar</a>
+                <a href="#" class="btn btn-primary">Cadastrar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="register-container">
+                <div class="register-header">
+                    <h2>Crie seu perfil de freelancer</h2>
+                    <p>Preencha seus dados para começar a oferecer serviços na plataforma</p>
+                </div>
+               
+                <div class="register-sidebar">
+                    <h3>Vantagens de se cadastrar</h3>
+                    <ul class="benefits-list">
+                        <li>
+                            <div class="benefit-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div>Ganhe experiência profissional enquanto estuda</div>
+                        </li>
+                        <li>
+                            <div class="benefit-icon">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div>Ganhe dinheiro com suas habilidades</div>
+                        </li>
+                        <li>
+                            <div class="benefit-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>Faça parte de uma comunidade confiável de alunos</div>
+                        </li>
+                        <li>
+                            <div class="benefit-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div>Taxa de apenas 15% por serviço concluído</div>
+                        </li>
+                        <li>
+                            <div class="benefit-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>Proteção e segurança em todas as transações</div>
+                        </li>
+                    </ul>
+                </div>
+               
+                <div class="register-form">
+                    <h3 class="form-title">Informações Pessoais</h3>
+                   
+                    <form id="registrationForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" class="required">Nome</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="required">Sobrenome</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="studentId" class="required">Matrícula Unijorge</label>
+                            <input type="text" id="studentId" name="studentId" required placeholder="Ex: 2023123456">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="enrollmentProof" class="required">Comprovante de Matrícula</label>
+                            <input type="file" id="enrollmentProof" name="enrollmentProof" accept=".pdf,.doc,.docx" required>
+                            <small style="display: block; margin-top: 5px; color: #666;">Envie seu comprovante (PDF, DOC, DOCX - Máx. 5MB)</small>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="course" class="required">Curso</label>
+                                <select id="course" name="course" required>
+                                    <option value="">Selecione seu curso</option>
+                                    <option value="Administração">Administração</option>
+                                    <option value="Ciência da Computação">Ciência da Computação</option>
+                                    <option value="Design Digital">Design Digital</option>
+                                    <option value="Direito">Direito</option>
+                                    <option value="Engenharia Civil">Engenharia Civil</option>
+                                    <option value="Jornalismo">Jornalismo</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Psicologia">Psicologia</option>
+                                    <option value="Publicidade e Propaganda">Publicidade e Propaganda</option>
+                                    <option value="Sistemas de Informação">Sistemas de Informação</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="semester" class="required">Semestre</label>
+                                <select id="semester" name="semester" required>
+                                    <option value="">Selecione o semestre</option>
+                                    <option value="1">1º Semestre</option>
+                                    <option value="2">2º Semestre</option>
+                                    <option value="3">3º Semestre</option>
+                                    <option value="4">4º Semestre</option>
+                                    <option value="5">5º Semestre</option>
+                                    <option value="6">6º Semestre</option>
+                                    <option value="7">7º Semestre</option>
+                                    <option value="8">8º Semestre</option>
+                                    <option value="9+">9º Semestre ou mais</option>
+                                </select>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="campus" class="required">Campus</label>
+                            <select id="campus" name="campus" required>
+                                <option value="">Selecione seu campus</option>
+                                <option value="Tancredo Neves">Tancredo Neves</option>
+                                <option value="Comércio">Comércio</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label class="required">Foto de Perfil</label>
+                            <div class="photo-upload">
+                                <div class="photo-preview">
+                                    <div class="photo-placeholder">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <img id="photoPreview" src="#" alt="Preview">
+                                </div>
+                                <div class="upload-btn">
+                                    <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" required>
+                                    <label for="profilePhoto">Escolher foto</label>
+                                    <small style="display: block; margin-top: 5px; color: #666;">Formatos: JPG, PNG (Máx. 2MB)</small>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <h3 class="form-title" style="margin-top: 40px;">Informações de Contato</h3>
+                       
+                        <div class="form-group">
+                            <label for="email" class="required">E-mail Institucional</label>
+                            <input type="email" id="email" name="email" required placeholder="seu.email@aluno.unijorge.edu.br">
+                        </div>
+                       
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone" class="required">Celular</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="(71) 99999-9999">
+                            </div>
+                            <div class="form-group">
+                                <label for="whatsapp">WhatsApp (se diferente)</label>
+                                <input type="tel" id="whatsapp" name="whatsapp" placeholder="(71) 99999-9999">
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="instagram">Instagram (opcional)</label>
+                            <div style="display: flex; align-items: center;">
+                                <span style="background: #f5f5f5; padding: 12px 15px; border: 1px solid #ddd; border-right: none; border-radius: 5px 0 0 5px;">@</span>
+                                <input type="text" id="instagram" name="instagram" style="border-radius: 0 5px 5px 0; flex: 1;" placeholder="seu.usuario">
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="bio" class="required">Sobre você</label>
+                            <textarea id="bio" name="bio" rows="4" required placeholder="Fale um pouco sobre você, suas habilidades e experiências..."></textarea>
+                        </div>
+                       
+                        <div class="form-footer">
+                            <div class="terms">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">Concordo com os <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a> da UniFreela, incluindo a taxa de 15% sobre os serviços prestados.</label>
+                            </div>
+                           
+                            <button type="submit" class="submit-btn">Completar Cadastro</button>
+                           
+                            <div class="login-link">
+                                Já tem uma conta? <a href="#">Faça login</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Photo preview functionality
+        document.getElementById('profilePhoto').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('photoPreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    document.querySelector('.photo-placeholder').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+       
+        // Form validation
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your form validation and submission logic here
+            alert('Formulário enviado com sucesso!');
+        });
+    </script>
+</body>
+</html>

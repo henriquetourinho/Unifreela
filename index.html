@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniFreela - Conectando talentos da Unijorge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px; /* Adjust height as needed */
+            margin-right: 10px;
+        }
+        /* Specific style for the UniFreela logo, if different */
+        .logo .unifreela-logo {
+            height: 40px; /* Adjust height as needed */
+            margin-right: 10px;
+        }
+        /* Specific style for the Unijorge logo, if different */
+        .logo .unijorge-logo {
+            height: 40px; /* Adjust height as needed */
+            margin-left: 10px; /* Add margin to separate from UniFreela logo */
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 0; /* Remove default margin */
+        }
+        
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin: 0; /* Remove default margin */
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .auth-buttons .btn {
+            margin-left: 10px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .hero-buttons .btn {
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-light {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .btn-light:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Como Funciona Section */
+        .how-it-works-section {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .step-card {
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: var(--light);
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-card .icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .step-card h4 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        /* Freelancers Section */
+        .freelancers-section {
+            padding: 60px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-header h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Search and Filter */
+        .search-filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .search-bar {
+            flex: 1;
+            min-width: 280px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .search-bar .fa-search {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .filter-dropdowns {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-dropdowns select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background-color: white;
+            font-size: 0.9rem;
+            appearance: none; /* Remove default arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2C197.8L159.2%2C62.2c-2.8-3.1-6.7-4.8-10.7-4.8s-7.9%2C1.7-10.7%2C4.8L5.4%2C197.8c-3.7%2C4.1-4.7%2C9.5-2.7%2C14.1s6.4%2C7.3%2C11.6%2C7.3h266.8c5.2%2C0%2C9.5-3.2%2C11.6-7.3S290.7%2C201.9%2C287%2C197.8z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 10px;
+            padding-right: 30px; /* Make space for the arrow */
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .freelancers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .freelancer-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .freelancer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            position: relative;
+            height: 120px;
+            background-color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            background-color: #ddd;
+            position: absolute;
+            bottom: -40px;
+            object-fit: cover;
+        }
+        
+        .card-body {
+            padding: 50px 20px 20px;
+            text-align: center;
+        }
+        
+        .freelancer-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .freelancer-course {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .skill-tag {
+            background-color: var(--light);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .rating {
+            color: #f1c40f;
+            margin-bottom: 15px;
+        }
+        
+        .card-footer {
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .view-profile {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Load More Button */
+        .load-more-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .load-more-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .load-more-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Pushes footer to bottom */
+        }
+
+        .testimonial-card .quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: auto; /* Pushes author to the bottom */
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--secondary);
+        }
+
+        .author-info strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        .author-info span {
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            background-color: var(--light);
+            padding: 60px 0;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Advertisement Section */
+        .ad-section {
+            padding: 60px 0;
+            background-color: #f0f4f8; /* A light background for the ad section */
+        }
+
+        .ad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .ad-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .ad-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .ad-card h4 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .ad-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .ad-card .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .faq-item {
+            background-color: var(--light);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background-color: var(--secondary);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #2980b9;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 15px 20px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            color: #555;
+        }
+
+        .faq-answer.active {
+            max-height: 200px; /* Adjust based on expected content length */
+            padding: 15px 20px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .cta-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+        }
+        
+        .cta-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+        
+        .cta-form button {
+            padding: 12px 25px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-form button:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .footer-logo p {
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin: 15px 0;
+            }
+            
+            .auth-buttons {
+                margin-top: 15px;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-form {
+                flex-direction: column;
+            }
+            
+            .cta-form input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            
+            .cta-form button {
+                border-radius: 5px;
+                width: 100%;
+            }
+
+            .ad-grid {
+                grid-template-columns: 1fr; /* Stack ads on small screens */
+            }
+
+            .search-filter-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-dropdowns {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="/var/www/unifreela/media/u.jpg" alt="UniFreela Logo" class="unifreela-logo"> 
+                <img src="/var/www/unifreela/media/logo.png" alt="Unijorge Logo" class="unijorge-logo"> 
+                <div class="logo-text">
+                    <p>Conectando talentos da Unijorge</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Explorar</a></li>
+                    <li><a href="#">Como Funciona</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="/login.html" class="btn btn-outline">Entrar</a>
+                <a href="/cadastro.html" class="btn btn-primary">Cadastrar</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Contrate serviços de colegas ou ofereça suas habilidades</h2>
+            <p>A plataforma exclusiva para alunos da Unijorge contratarem e oferecerem serviços com segurança e facilidade.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-accent">Quero contratar</a>
+                <a href="#" class="btn btn-light">Quero trabalhar</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>Como Funciona a UniFreela?</h3>
+                <p>É simples, rápido e seguro. Siga estes passos para começar:</p>
+            </div>
+            <div class="how-it-works-grid">
+                <div class="step-card">
+                    <div class="icon"><i class="fas fa-user-plus"></i></div>
+                    <h4>1. Cadastre-se e Crie seu Perfil</h4>
+                    <p>Seja você um estudante buscando trabalho ou querendo contratar, comece criando seu perfil exclusivo da Unijorge.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon"><i class="fas fa-search"></i></div>
+                    <h4>2. Encontre ou Ofereça Serviços</h4>
+                    <p>Clientes: Explore talentos ou publique um projeto. Freelancers: Encontre projetos que se encaixem nas suas habilidades.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <h4>3. Negocie e Colabore</h4>
+                    <p>Comunique-se diretamente, negocie termos e colabore para garantir que o projeto atenda às expectativas.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon"><i class="fas fa-check-circle"></i></div>
+                    <h4>4. Conclua e Avalie</h4>
+                    <p>Após a entrega, finalize o pagamento e deixe uma avaliação para o serviço ou o freelancer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="freelancers-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>Freelancers em Destaque</h3>
+                <p>Conheça alguns dos talentos disponíveis na nossa plataforma</p>
+            </div>
+            
+            <div class="search-filter-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar freelancers ou serviços...">
+                </div>
+                <div class="filter-dropdowns">
+                    <select>
+                        <option value="">Categoria</option>
+                        <option value="design">Design</option>
+                        <option value="ti">TI & Programação</option>
+                        <option value="marketing">Marketing</option>
+                    </select>
+                    <select>
+                        <option value="">Semestre</option>
+                        <option value="1-4">1º-4º Semestre</option>
+                        <option value="5-8">5º-8º Semestre</option>
+                    </select>
+                    <select>
+                        <option value="">Avaliação</option>
+                        <option value="4-star">4 Estrelas +</option>
+                        <option value="5-star">5 Estrelas</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="filters">
+                <button class="filter-btn active">Todos</button>
+                <button class="filter-btn">Design</button>
+                <button class="filter-btn">TI & Programação</button>
+                <button class="filter-btn">Marketing</button>
+                <button class="filter-btn">Redação</button>
+                <button class="filter-btn">Consultoria</button>
+            </div>
+            
+            <div class="freelancers-grid">
+                <div class="freelancer-card">
+                    <div class="card-header">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Ana Silva" class="profile-img">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="freelancer-name">Ana Silva</h4>
+                        <p class="freelancer-course">Design Digital - 5º Semestre</p>
+                        <div class="skills">
+                            <span class="skill-tag">Design Gráfico</span>
+                            <span class="skill-tag">Photoshop</span>
+                            <span class="skill-tag">Ilustração</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(12)</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">R$ 50/h</span>
+                        <a href="/var/www/unifreela/perfil.html" class="view-profile">Ver perfil</a>
+                    </div>
+                </div>
+                
+                <div class="freelancer-card">
+                    <div class="card-header">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Carlos Oliveira" class="profile-img">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="freelancer-name">Carlos Oliveira</h4>
+                        <p class="freelancer-course">Sistemas de Informação - 6º Semestre</p>
+                        <div class="skills">
+                            <span class="skill-tag">Desenvolvimento Web</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(8)</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">R$ 80/h</span>
+                        <a href="" class="view-profile">Ver perfil</a>
+                    </div>
+                </div>
+                
+                <div class="freelancer-card">
+                    <div class="card-header">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Juliana Santos" class="profile-img">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="freelancer-name">Juliana Santos</h4>
+                        <p class="freelancer-course">Publicidade - 4º Semestre</p>
+                        <div class="skills">
+                            <span class="skill-tag">Social Media</span>
+                            <span class="skill-tag">Copywriting</span>
+                            <span class="skill-tag">Tráfego Pago</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(15)</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">R$ 60/h</span>
+                        <a href="#" class="view-profile">Ver perfil</a>
+                    </div>
+                </div>
+                
+                <div class="freelancer-card">
+                    <div class="card-header">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Ricardo Almeida" class="profile-img">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="freelancer-name">Ricardo Almeida</h4>
+                        <p class="freelancer-course">Administração - 7º Semestre</p>
+                        <div class="skills">
+                            <span class="skill-tag">Consultoria</span>
+                            <span class="skill-tag">Plano de Negócios</span>
+                            <span class="skill-tag">Excel</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(20)</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">R$ 70/h</span>
+                        <a href="#" class="view-profile">Ver perfil</a>
+                    </div>
+                </div>
+            </div>
+            <div class="load-more-container">
+                <button class="load-more-btn">Carregar Mais Freelancers</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>O que dizem sobre a UniFreela</h3>
+                <p>Histórias de sucesso da nossa comunidade de talentos da Unijorge.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="quote">"Consegui meu primeiro trabalho como designer gráfico aqui e foi uma experiência incrível. Recomendo muito para quem quer começar!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="João Silva">
+                        <div class="author-info">
+                            <strong>João Silva</strong>
+                            <span>Design Digital, 3º Semestre</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"Precisava de ajuda com um trabalho de programação e encontrei um colega super competente e com um preço justo. Plataforma excelente!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Mariana Costa">
+                        <div class="author-info">
+                            <strong>Mariana Costa</strong>
+                            <span>Arquitetura, 6º Semestre</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"A UniFreela me deu a oportunidade de aplicar meus conhecimentos de marketing em projetos reais, o que valorizou muito meu currículo."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Pedro Santos">
+                        <div class="author-info">
+                            <strong>Pedro Santos</strong>
+                            <span>Marketing, 7º Semestre</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>Por que usar a UniFreela?</h3>
+                <p>Vantagens exclusivas para alunos da Unijorge</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Ganhe Experiência</h4>
+                    <p>Construa seu portfólio trabalhando em projetos reais enquanto ainda está na faculdade.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h4>Preços Acessíveis</h4>
+                    <p>Serviços de qualidade por valores que cabem no bolso de estudantes.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Comunidade Confiável</h4>
+                    <p>Todos os usuários são alunos verificados da Unijorge, garantindo maior segurança.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h4>Taxa Justa</h4>
+                    <p>Apenas 15% por serviço concluído, menor que plataformas convencionais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ad-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>Publicidade</h3>
+                <p>Confira ofertas de nossos parceiros!</p>
+            </div>
+            <div class="ad-grid">
+                <div class="ad-card">
+                    <img src="/var/www/unifreela/media/unifacs.png" alt="Anúncio Universidade X">
+                    <h4>Estude na Universidade X!</h4>
+                    <p>Cursos de graduação e pós com descontos exclusivos para a comunidade UniFreela.</p>
+                    <a href="#" class="btn btn-primary">Saiba Mais</a>
+                </div>
+                
+                <div class="ad-card">
+                    <img src="/var/www/unifreela/media/estacio.png" alt="Anúncio Cursos Online">
+                    <h4>Cursos Online de Capacitação</h4>
+                    <p>Aprimore suas habilidades com cursos de curta duração e certificação reconhecida.</p>
+                    <a href="#" class="btn btn-outline">Ver Cursos</a>
+                </div>
+
+                <div class="ad-card">
+                    <img src="/var/www/unifreela/media/uninassau.png" alt="Anúncio Intercâmbio">
+                    <h4>Intercâmbio Universitário</h4>
+                    <p>Experiências internacionais para alavancar sua carreira. Programas flexíveis.</p>
+                    <a href="#" class="btn btn-accent">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>Perguntas Frequentes (FAQ)</h3>
+                <p>Tire suas dúvidas sobre a UniFreela.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como posso me cadastrar como freelancer?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para se cadastrar como freelancer, clique em "Cadastrar" no canto superior direito e preencha o formulário com suas informações de estudante da Unijorge e habilidades. Após a verificação, você poderá criar seus serviços.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Qual a taxa cobrada pela plataforma?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A UniFreela cobra uma taxa de apenas 15% sobre o valor de cada serviço concluído. Essa taxa é utilizada para manter a plataforma funcionando e garantir a segurança das transações.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Posso contratar serviços mesmo não sendo da Unijorge?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Atualmente, a UniFreela é uma plataforma exclusiva para a comunidade acadêmica da Unijorge, tanto para freelancers quanto para clientes, garantindo um ambiente mais seguro e focado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h3>Cadastre-se agora e comece a usar</h3>
+            <p>Junte-se à comunidade de freelancers e clientes da Unijorge e descubra novas oportunidades.</p>
+            <form class="cta-form">
+                <input type="email" placeholder="Digite seu e-mail institucional">
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <h3>UniFreela</h3>
+                        <p>Conectando talentos da Unijorge</p>
+                    </div>
+                    <p>A plataforma exclusiva para alunos da Unijorge oferecerem e contratarem serviços entre si.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <div class="footer-links">
+                        <h4>Links Rápidos</h4>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Explorar</a></li>
+                            <li><a href="#">Como Funciona</a></li>
+                            <li><a href="#">Depoimentos</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <div class="footer-links">
+                        <h4>Categorias</h4>
+                        <ul>
+                            <li><a href="#">Design</a></li>
+                            <li><a href="#">TI & Programação</a></li>
+                            <li><a href="#">Marketing</a></li>
+                            <li><a href="#">Redação</a></li>
+                            <li><a href="#">Consultoria</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <div class="footer-links">
+                        <h4>Suporte</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Central de Ajuda</a></li>
+                            <li><a href="#">Termos de Uso</a></li>
+                            <li><a href="#">Política de Privacidade</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 UniFreela - Plataforma para alunos da Unijorge. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for internal links (optional)
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // FAQ Accordion functionality
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const faqItem = item.closest('.faq-item');
+                const faqAnswer = faqItem.querySelector('.faq-answer');
+                const icon = item.querySelector('i');
+
+                // Close other open answers
+                document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
+                    if (openAnswer !== faqAnswer) {
+                        openAnswer.classList.remove('active');
+                        openAnswer.closest('.faq-item').querySelector('.faq-question i').classList.remove('active');
+                    }
+                });
+
+                faqAnswer.classList.toggle('active');
+                icon.classList.toggle('active');
+            });
+        });
+
+        // Placeholder for Load More functionality (requires backend or more complex JS)
+        document.querySelector('.load-more-btn').addEventListener('click', function() {
+            alert('Funcionalidade de "Carregar Mais" ainda não implementada. Isso carregaria mais freelancers.');
+            // In a real application, you would fetch more freelancers from a server
+            // and append them to the .freelancers-grid
+        });
+
+        // Placeholder for Search and Filter functionality (requires JavaScript to implement filtering logic)
+        document.querySelector('.search-bar input').addEventListener('input', function() {
+            // console.log('Searching for:', this.value);
+            // Implement live search/filter logic here
+        });
+
+        document.querySelectorAll('.filter-dropdowns select').forEach(select => {
+            select.addEventListener('change', function() {
+                // console.log('Filter changed:', this.value);
+                // Implement filter logic here
+            });
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                // console.log('Filter button clicked:', this.textContent);
+                // Implement filter logic based on button text
+            });
+        });
+
+    </script>
+</body>
+</html>

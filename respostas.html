@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Unifreela</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --unifreela-primary: #2C3E50;
+            --unifreela-secondary: #E74C3C;
+            --unifreela-accent: #3498DB;
+            --unifreela-light: #ECF0F1;
+            --unifreela-dark: #1A252F;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--unifreela-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--unifreela-primary), var(--unifreela-dark));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 45px;
+            margin-right: 15px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--unifreela-accent);
+        }
+        
+        .card h2 {
+            color: var(--unifreela-primary);
+            margin-top: 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+        
+        .data-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin: 40px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        
+        th {
+            background: linear-gradient(135deg, var(--unifreela-primary), var(--unifreela-dark));
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .badge-primary {
+            background-color: var(--unifreela-accent);
+            color: white;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.1rem;
+            color: var(--unifreela-primary);
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--unifreela-accent);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        .error-container {
+            background-color: #FDEDEC;
+            border-left: 4px solid #E74C3C;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .error-container h3 {
+            color: #E74C3C;
+            margin-bottom: 10px;
+        }
+        
+        .error-container ol {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        .btn-retry {
+            padding: 8px 16px;
+            background-color: var(--unifreela-accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://via.placeholder.com/150x45?text=UNIFREELA" alt="Logo Unifreela">
+                <h1>Painel de Respostas</h1>
+            </div>
+            <div id="totalResponses" class="badge badge-primary">Carregando...</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="loading" class="loading">
+            <p>Carregando dados das pesquisas...</p>
+            <div class="spinner"></div>
+        </div>
+
+        <div id="content" style="display: none;">
+            <section class="dashboard">
+                <div class="card">
+                    <h2>Distribuição por Idade</h2>
+                    <div class="chart-container">
+                        <canvas id="idadeChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Distribuição por Gênero</h2>
+                    <div class="chart-container">
+                        <canvas id="generoChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Meios de Pagamento</h2>
+                    <div class="chart-container">
+                        <canvas id="pagamentoChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="data-table">
+                <h2>Todas as Respostas</h2>
+                <div style="overflow-x: auto;">
+                    <table id="tabelaRespostas">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Nome</th>
+                                <th>Idade</th>
+                                <th>Gênero</th>
+                                <th>Gasta na Unijorge?</th>
+                                <th>Valor Gasto</th>
+                                <th>Meio de Pagamento</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // URL base dinâmica
+                const baseUrl = window.location.href.replace(/\/[^\/]*$/, '/');
+                
+                // Tentativa de carregar via PHP
+                const response = await fetch(`${baseUrl}respostas.php`);
+                
+                if (!response.ok) {
+                    // Fallback para o JSON estático
+                    const fallbackResponse = await fetch(`${baseUrl}respostas.json`);
+                    if (!fallbackResponse.ok) {
+                        throw new Error('Não foi possível carregar os dados');
+                    }
+                    const data = await fallbackResponse.json();
+                    processarDados(data);
+                    return;
+                }
+                
+                const todasRespostas = await response.json();
+                
+                if (!todasRespostas || !Array.isArray(todasRespostas)) {
+                    throw new Error('Formato de dados inválido');
+                }
+                
+                processarDados(todasRespostas);
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                showError(error);
+            }
+        });
+
+        function showError(error) {
+            const loadingDiv = document.getElementById('loading');
+            loadingDiv.innerHTML = `
+                <div class="error-container">
+                    <h3>Erro ao carregar dados</h3>
+                    <p>${error.message}</p>
+                    <p>Verifique:</p>
+                    <ol>
+                        <li>Se o servidor web está rodando</li>
+                        <li>Se o arquivo respostas.php existe no diretório correto</li>
+                        <li>Se há arquivos JSON na pasta /respostas/</li>
+                        <li>As permissões dos arquivos (644 para PHP/HTML, 755 para pastas)</li>
+                    </ol>
+                    <button class="btn-retry" onclick="window.location.reload()">
+                        Tentar novamente
+                    </button>
+                </div>
+            `;
+        }
+
+        function processarDados(respostas) {
+            // Esconder loading e mostrar conteúdo
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+            
+            // Atualizar total de respostas
+            document.getElementById('totalResponses').textContent = `${respostas.length} respostas`;
+            
+            // Processar dados para gráficos
+            const idades = {};
+            const generos = {};
+            const pagamentos = {};
+            const tabela = document.querySelector("#tabelaRespostas tbody");
+
+            // Ordenar por data (mais recente primeiro)
+            respostas.sort((a, b) => {
+                return new Date(b._modificacao || 0) - new Date(a._modificacao || 0);
+            });
+
+            respostas.forEach(resposta => {
+                const r = resposta.respostas || {};
+                
+                // Processar idade
+                const idade = r["3 - Idade"] || "Não informado";
+                idades[idade] = (idades[idade] || 0) + 1;
+                
+                // Processar gênero
+                const genero = r["4 - Gênero"] || "Não informado";
+                generos[genero] = (generos[genero] || 0) + 1;
+                
+                // Processar pagamento
+                const pagamento = r["7 - Meios de Pagamento"] || "Não informado";
+                pagamentos[pagamento] = (pagamentos[pagamento] || 0) + 1;
+
+                // Adicionar linha na tabela
+                const tr = document.createElement("tr");
+                [
+                    formatarData(resposta._modificacao),
+                    r["1 - Nome"] || "Não informado", 
+                    r["3 - Idade"] || "-", 
+                    r["4 - Gênero"] || "-", 
+                    r["6 - Gasta na Unijorge"] || "-", 
+                    r["6 - Gasta na Unijorge"] === "Sim" ? (r["6.1 - Valor Gasto"] || "0") : "-", 
+                    r["7 - Meios de Pagamento"] || "-"
+                ].forEach(val => {
+                    const td = document.createElement("td");
+                    td.textContent = val;
+                    tr.appendChild(td);
+                });
+                tabela.appendChild(tr);
+            });
+
+            // Configuração comum para os gráficos
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percent = Math.round((context.raw / total) * 100);
+                                return `${context.label}: ${context.raw} (${percent}%)`;
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Gerar gráfico de idades
+            new Chart(
+                document.getElementById('idadeChart').getContext('2d'),
+                {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(idades).sort((a, b) => a - b),
+                        datasets: [{
+                            label: 'Quantidade',
+                            data: Object.values(idades),
+                            backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                            borderColor: 'rgba(52, 152, 219, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: chartOptions
+                }
+            );
+
+            // Gerar gráfico de gêneros
+            new Chart(
+                document.getElementById('generoChart').getContext('2d'),
+                {
+                    type: 'pie',
+                    data: {
+                        labels: Object.keys(generos),
+                        datasets: [{
+                            data: Object.values(generos),
+                            backgroundColor: [
+                                'rgba(231, 76, 60, 0.7)',
+                                'rgba(46, 204, 113, 0.7)',
+                                'rgba(155, 89, 182, 0.7)',
+                                'rgba(241, 196, 15, 0.7)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: chartOptions
+                }
+            );
+
+            // Gerar gráfico de meios de pagamento
+            new Chart(
+                document.getElementById('pagamentoChart').getContext('2d'),
+                {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(pagamentos),
+                        datasets: [{
+                            data: Object.values(pagamentos),
+                            backgroundColor: [
+                                'rgba(52, 152, 219, 0.7)',
+                                'rgba(241, 196, 15, 0.7)',
+                                'rgba(46, 204, 113, 0.7)',
+                                'rgba(155, 89, 182, 0.7)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: chartOptions
+                }
+            );
+        }
+
+        function formatarData(dataString) {
+            if (!dataString) return "Desconhecido";
+            const options = { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            return new Date(dataString).toLocaleString('pt-BR', options);
+        }
+    </script>
+</body>
+</html>

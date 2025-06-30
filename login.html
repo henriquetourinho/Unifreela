@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | UniFreela</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+       
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+       
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+       
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+       
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+       
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+       
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+       
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+       
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+       
+        .auth-buttons .btn {
+            margin-left: 10px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+       
+        .btn-outline {
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+        }
+       
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+       
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+       
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+       
+        /* Main Content */
+        .main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            margin-top: 80px;
+            padding: 40px 0;
+        }
+       
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+       
+        .login-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 50px;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+       
+        .login-hero img {
+            width: 150px;
+            margin-bottom: 30px;
+        }
+       
+        .login-hero h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+       
+        .login-hero p {
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+       
+        .login-hero .btn {
+            color: white;
+            border: 1px solid white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+       
+        .login-hero .btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+       
+        .login-form {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+       
+        .form-header {
+            margin-bottom: 30px;
+        }
+       
+        .form-header h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+       
+        .form-header p {
+            color: #666;
+        }
+       
+        .form-group {
+            margin-bottom: 20px;
+        }
+       
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+       
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+       
+        input:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+       
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+       
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+       
+        .remember-me input {
+            width: auto;
+            margin-right: 8px;
+        }
+       
+        .forgot-password a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+       
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+       
+        .submit-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+       
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+       
+        .social-login {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+       
+        .social-login p {
+            color: #666;
+            margin-bottom: 15px;
+            position: relative;
+        }
+       
+        .social-login p::before,
+        .social-login p::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background-color: #ddd;
+        }
+       
+        .social-login p::before {
+            left: 0;
+        }
+       
+        .social-login p::after {
+            right: 0;
+        }
+       
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+       
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+       
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+       
+        .facebook {
+            background-color: #3b5998;
+        }
+       
+        .google {
+            background-color: #db4437;
+        }
+       
+        .apple {
+            background-color: #000;
+        }
+       
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+       
+        .register-link a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+       
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+       
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+       
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+           
+            nav ul {
+                margin: 15px 0;
+            }
+           
+            .auth-buttons {
+                margin-top: 15px;
+            }
+           
+            .login-container {
+                flex-direction: column;
+            }
+           
+            .login-hero {
+                width: 100%;
+                padding: 30px;
+            }
+           
+            .login-form {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/40" alt="UniFreela Logo">
+                <div class="logo-text">
+                    <h1>UniFreela</h1>
+                    <p>Conectando talentos da Unijorge</p>
+                </div>
+            </div>
+           
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Explorar</a></li>
+                    <li><a href="#">Como Funciona</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+           
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Entrar</a>
+                <a href="#" class="btn btn-primary">Cadastrar</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-hero">
+                    <img src="https://via.placeholder.com/150x150?text=UniFreela" alt="UniFreela">
+                    <h2>Bem-vindo de volta!</h2>
+                    <p>Acesse sua conta para encontrar ou oferecer serviços na plataforma exclusiva para alunos da Unijorge.</p>
+                    <a href="#" class="btn">Não tem uma conta? Cadastre-se</a>
+                </div>
+               
+                <div class="login-form">
+                    <div class="form-header">
+                        <h2>Faça seu login</h2>
+                        <p>Use seu e-mail institucional e senha para acessar</p>
+                    </div>
+                   
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="email">E-mail Institucional</label>
+                            <input type="email" id="email" name="email" placeholder="seu.email@aluno.unijorge.edu.br" required>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="password">Senha</label>
+                            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                        </div>
+                       
+                        <div class="remember-forgot">
+                            <div class="remember-me">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">Lembrar-me</label>
+                            </div>
+                            <div class="forgot-password">
+                                <a href="#">Esqueceu sua senha?</a>
+                            </div>
+                        </div>
+                       
+                        <button type="submit" class="submit-btn">Entrar</button>
+                       
+                        <div class="social-login">
+                            <p>Ou entre com</p>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon facebook" title="Entrar com Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon google" title="Entrar com Google">
+                                    <i class="fab fa-google"></i>
+                                </a>
+                                <a href="#" class="social-icon apple" title="Entrar com Apple">
+                                    <i class="fab fa-apple"></i>
+                                </a>
+                            </div>
+                        </div>
+                       
+                        <div class="register-link">
+                            Não tem uma conta? <a href="#">Cadastre-se agora</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 UniFreela - Plataforma para alunos da Unijorge. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your form validation and submission logic here
+            const email = document.getElementById('email').value;
+           
+            // Simple email validation for Unijorge domain
+            if (!email.endsWith('@aluno.unijorge.edu.br')) {
+                alert('Por favor, use seu e-mail institucional da Unijorge (@aluno.unijorge.edu.br)');
+                return;
+            }
+           
+            // Simulate successful login
+            alert('Login realizado com sucesso! Redirecionando...');
+            // window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>

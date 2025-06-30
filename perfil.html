@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+ <html lang="pt-BR">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Perfil de Ana Silva | UniFreela</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <style>
+         :root {
+             --primary: #2c3e50;
+             --secondary: #3498db;
+             --accent: #e74c3c;
+             --light: #ecf0f1;
+             --dark: #2c3e50;
+             --success: #2ecc71;
+         }
+        
+         * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         }
+        
+         body {
+             background-color: #f5f7fa;
+             color: #333;
+             line-height: 1.6;
+         }
+        
+         .container {
+             width: 90%;
+             max-width: 1200px;
+             margin: 0 auto;
+             padding: 0 15px;
+         }
+        
+         /* Header Styles */
+         header {
+             background-color: white;
+             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+             position: fixed;
+             width: 100%;
+             top: 0;
+             z-index: 1000;
+         }
+        
+         .header-container {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             padding: 15px 0;
+         }
+        
+         .logo {
+             display: flex;
+             align-items: center;
+         }
+        
+         .logo img {
+             height: 40px;
+             margin-right: 10px;
+         }
+        
+         .logo-text h1 {
+             font-size: 1.5rem;
+             color: var(--primary);
+             font-weight: 700;
+         }
+        
+         .logo-text p {
+             font-size: 0.8rem;
+             color: var(--secondary);
+         }
+        
+         nav ul {
+             display: flex;
+             list-style: none;
+         }
+        
+         nav ul li {
+             margin-left: 25px;
+         }
+        
+         nav ul li a {
+             text-decoration: none;
+             color: var(--dark);
+             font-weight: 500;
+             transition: color 0.3s;
+         }
+        
+         nav ul li a:hover {
+             color: var(--secondary);
+         }
+        
+         .auth-buttons .btn {
+             margin-left: 10px;
+             padding: 8px 15px;
+             border-radius: 5px;
+             font-weight: 500;
+             text-decoration: none;
+             transition: all 0.3s;
+         }
+        
+         .btn-outline {
+             border: 1px solid var(--secondary);
+             color: var(--secondary);
+         }
+        
+         .btn-outline:hover {
+             background-color: var(--secondary);
+             color: white;
+         }
+        
+         .btn-primary {
+             background-color: var(--secondary);
+             color: white;
+         }
+        
+         .btn-primary:hover {
+             background-color: #2980b9;
+         }
+        
+         /* Profile Header */
+         .profile-header {
+             background-color: white;
+             margin-top: 80px;
+             padding: 30px 0;
+             border-radius: 10px;
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+         }
+        
+         .profile-container {
+             display: flex;
+             align-items: center;
+             flex-wrap: wrap;
+         }
+        
+         .profile-img-container {
+             width: 150px;
+             height: 150px;
+             border-radius: 50%;
+             overflow: hidden;
+             margin-right: 30px;
+             border: 5px solid var(--light);
+         }
+        
+         .profile-img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+         }
+        
+         .profile-info {
+             flex: 1;
+             min-width: 300px;
+         }
+        
+         .profile-name {
+             font-size: 2rem;
+             color: var(--primary);
+             margin-bottom: 5px;
+         }
+        
+         .profile-course {
+             font-size: 1.1rem;
+             color: var(--secondary);
+             margin-bottom: 10px;
+             display: flex;
+             align-items: center;
+         }
+        
+         .verified-badge {
+             background-color: var(--success);
+             color: white;
+             font-size: 0.7rem;
+             padding: 2px 8px;
+             border-radius: 10px;
+             margin-left: 10px;
+             display: inline-flex;
+             align-items: center;
+         }
+        
+         .verified-badge i {
+             margin-right: 3px;
+         }
+        
+         .profile-location {
+             display: flex;
+             align-items: center;
+             color: #666;
+             margin-bottom: 15px;
+         }
+        
+         .profile-location i {
+             margin-right: 5px;
+             color: var(--accent);
+         }
+        
+         .profile-rating {
+             display: flex;
+             align-items: center;
+             margin-bottom: 15px;
+         }
+        
+         .stars {
+             color: #f1c40f;
+             margin-right: 10px;
+         }
+        
+         .rating-count {
+             color: #666;
+         }
+        
+         .profile-actions {
+             display: flex;
+             gap: 15px;
+             margin-top: 20px;
+         }
+        
+         .btn-accent {
+             background-color: var(--accent);
+             color: white;
+             padding: 10px 25px;
+             border-radius: 5px;
+             font-weight: 600;
+             text-decoration: none;
+             transition: all 0.3s;
+             border: none;
+             cursor: pointer;
+         }
+        
+         .btn-accent:hover {
+             background-color: #c0392b;
+         }
+        
+         .btn-outline {
+             border: 1px solid var(--secondary);
+             color: var(--secondary);
+             padding: 10px 25px;
+             border-radius: 5px;
+             font-weight: 600;
+             text-decoration: none;
+             transition: all 0.3s;
+             background: none;
+             cursor: pointer;
+         }
+        
+         .btn-outline:hover {
+             background-color: var(--secondary);
+             color: white;
+         }
+        
+         /* Profile Navigation */
+         .profile-nav {
+             background-color: white;
+             margin: 20px 0;
+             border-radius: 10px;
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+         }
+        
+         .profile-nav ul {
+             display: flex;
+             list-style: none;
+             padding: 0;
+             margin: 0;
+         }
+        
+         .profile-nav li {
+             flex: 1;
+             text-align: center;
+         }
+        
+         .profile-nav a {
+             display: block;
+             padding: 15px 10px;
+             text-decoration: none;
+             color: var(--dark);
+             font-weight: 500;
+             transition: all 0.3s;
+             position: relative;
+         }
+        
+         .profile-nav a:hover, .profile-nav a.active {
+             color: var(--secondary);
+         }
+        
+         .profile-nav a.active::after {
+             content: '';
+             position: absolute;
+             bottom: 0;
+             left: 0;
+             width: 100%;
+             height: 3px;
+             background-color: var(--secondary);
+         }
+        
+         /* Profile Content */
+         .profile-content {
+             display: flex;
+             flex-wrap: wrap;
+             gap: 30px;
+             margin-bottom: 50px;
+         }
+        
+         .main-content {
+             flex: 2;
+             min-width: 300px;
+         }
+        
+         .sidebar {
+             flex: 1;
+             min-width: 250px;
+         }
+        
+         /* About Section */
+         .about-section, .services-section, .portfolio-section, .reviews-section {
+             background-color: white;
+             padding: 30px;
+             border-radius: 10px;
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+             margin-bottom: 30px;
+         }
+        
+         .section-title {
+             font-size: 1.5rem;
+             color: var(--primary);
+             margin-bottom: 20px;
+             padding-bottom: 10px;
+             border-bottom: 1px solid #eee;
+         }
+        
+         .about-text {
+             line-height: 1.8;
+         }
+        
+         /* Skills */
+         .skills-container {
+             margin-top: 20px;
+         }
+        
+         .skill-category {
+             margin-bottom: 15px;
+         }
+        
+         .skill-category h4 {
+             margin-bottom: 10px;
+             color: var(--primary);
+         }
+        
+         .skills-list {
+             display: flex;
+             flex-wrap: wrap;
+             gap: 10px;
+         }
+        
+         .skill-tag {
+             background-color: var(--light);
+             padding: 5px 15px;
+             border-radius: 20px;
+             font-size: 0.9rem;
+         }
+        
+         /* Services */
+         .service-card {
+             border: 1px solid #eee;
+             border-radius: 8px;
+             padding: 20px;
+             margin-bottom: 15px;
+             transition: all 0.3s;
+         }
+        
+         .service-card:hover {
+             border-color: var(--secondary);
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+         }
+        
+         .service-title {
+             font-size: 1.2rem;
+             color: var(--primary);
+             margin-bottom: 10px;
+         }
+        
+         .service-price {
+             font-size: 1.5rem;
+             color: var(--accent);
+             margin: 10px 0;
+             font-weight: 600;
+         }
+        
+         .service-description {
+             color: #666;
+             margin-bottom: 15px;
+         }
+        
+         .service-meta {
+             display: flex;
+             justify-content: space-between;
+             color: #666;
+             font-size: 0.9rem;
+         }
+        
+         /* Portfolio */
+         .portfolio-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+             gap: 20px;
+         }
+        
+         .portfolio-item {
+             border-radius: 8px;
+             overflow: hidden;
+             position: relative;
+             height: 200px;
+         }
+        
+         .portfolio-img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+             transition: transform 0.3s;
+         }
+        
+         .portfolio-overlay {
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             background: rgba(0, 0, 0, 0.7);
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+             opacity: 0;
+             transition: opacity 0.3s;
+             color: white;
+             padding: 20px;
+             text-align: center;
+         }
+        
+         .portfolio-item:hover .portfolio-overlay {
+             opacity: 1;
+         }
+        
+         .portfolio-item:hover .portfolio-img {
+             transform: scale(1.1);
+         }
+        
+         /* Reviews */
+         .review-card {
+             border-bottom: 1px solid #eee;
+             padding: 20px 0;
+         }
+        
+         .review-card:last-child {
+             border-bottom: none;
+         }
+        
+         .review-header {
+             display: flex;
+             justify-content: space-between;
+             margin-bottom: 10px;
+         }
+        
+         .reviewer {
+             display: flex;
+             align-items: center;
+         }
+        
+         .reviewer-img {
+             width: 40px;
+             height: 40px;
+             border-radius: 50%;
+             margin-right: 10px;
+             object-fit: cover;
+         }
+        
+         .reviewer-name {
+             font-weight: 600;
+         }
+        
+         .review-date {
+             color: #666;
+             font-size: 0.9rem;
+         }
+        
+         .review-rating {
+             color: #f1c40f;
+         }
+        
+         .review-text {
+             color: #333;
+             line-height: 1.6;
+         }
+        
+         /* Sidebar */
+         .sidebar-card {
+             background-color: white;
+             padding: 25px;
+             border-radius: 10px;
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+             margin-bottom: 30px;
+         }
+        
+         .sidebar-title {
+             font-size: 1.2rem;
+             color: var(--primary);
+             margin-bottom: 15px;
+             padding-bottom: 10px;
+             border-bottom: 1px solid #eee;
+         }
+        
+         .price-card {
+             text-align: center;
+         }
+        
+         .hourly-rate {
+             font-size: 2.5rem;
+             color: var(--accent);
+             font-weight: 700;
+             margin: 15px 0;
+         }
+        
+         .price-note {
+             color: #666;
+             font-size: 0.9rem;
+             margin-bottom: 20px;
+         }
+        
+         .availability-item {
+             display: flex;
+             justify-content: space-between;
+             margin-bottom: 10px;
+             padding-bottom: 10px;
+             border-bottom: 1px dashed #eee;
+         }
+        
+         .day {
+             font-weight: 500;
+         }
+        
+         .status {
+             padding: 3px 10px;
+             border-radius: 20px;
+             font-size: 0.8rem;
+         }
+        
+         .status.available {
+             background-color: #e8f5e9;
+             color: var(--success);
+         }
+        
+         .status.unavailable {
+             background-color: #ffebee;
+             color: var(--accent);
+         }
+        
+         .contact-info {
+             margin-top: 15px;
+         }
+        
+         .contact-item {
+             display: flex;
+             align-items: center;
+             margin-bottom: 10px;
+         }
+        
+         .contact-icon {
+             width: 40px;
+             height: 40px;
+             background-color: var(--light);
+             border-radius: 50%;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             margin-right: 10px;
+             color: var(--secondary);
+         }
+ 
+         /* Advertisement Styles */
+         .ad-container {
+             background-color: #f8f9fa;
+             border-radius: 8px;
+             padding: 15px;
+             margin: 20px 0;
+             text-align: center;
+             border: 1px solid #e0e0e0;
+         }
+ 
+         .ad-title {
+             font-size: 0.9rem;
+             color: #666;
+             margin-bottom: 10px;
+             text-transform: uppercase;
+             letter-spacing: 1px;
+         }
+ 
+         .ad-content {
+             background-color: white;
+             padding: 15px;
+             border-radius: 5px;
+             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+         }
+ 
+         .ad-banner {
+             width: 100%;
+             max-height: 250px;
+             object-fit: contain;
+             border-radius: 4px;
+         }
+ 
+         .ad-text {
+             margin-top: 10px;
+             font-size: 0.9rem;
+             color: #333;
+         }
+ 
+         .ad-link {
+             display: inline-block;
+             margin-top: 10px; /* Corrected from 10 */
+             padding: 8px 15px;
+             background-color: var(--secondary);
+             color: white;
+             text-decoration: none;
+             border-radius: 5px;
+             font-weight: 500;
+             transition: background-color 0.3s;
+         }
+ 
+         .ad-link:hover {
+             background-color: #2980b9;
+         }
+     </style>
+ </head>
+ <body>
+     <header>
+         <div class="container header-container">
+             <a href="#" class="logo">
+                 <img src="http://googleusercontent.com/image_collection/image_retrieval/14054356869967721114" alt="UniFreela Logo">
+                 <div class="logo-text">
+                     <h1>UniFreela</h1>
+                     <p>Conectando talentos universitários</p>
+                 </div>
+             </a>
+             <nav>
+                 <ul>
+                     <li><a href="#">Início</a></li>
+                     <li><a href="#">Projetos</a></li>
+                     <li><a href="#">Freelas</a></li>
+                     <li><a href="#">Sobre</a></li>
+                     <li><a href="#">Contato</a></li>
+                 </ul>
+             </nav>
+             <div class="auth-buttons">
+                 <a href="#" class="btn btn-outline">Entrar</a>
+                 <a href="#" class="btn btn-primary">Cadastre-se</a>
+             </div>
+         </div>
+     </header>
+ 
+     <main class="container">
+         <section class="profile-header">
+             <div class="profile-container">
+                 <div class="profile-img-container">
+                     <img src="http://googleusercontent.com/image_collection/image_retrieval/8932695067370583112" alt="Foto de Perfil" class="profile-img">
+                 </div>
+                 <div class="profile-info">
+                     <h2 class="profile-name">Ana Silva</h2>
+                     <p class="profile-course">Design Gráfico <span class="verified-badge"><i class="fas fa-check-circle"></i> Verificado</span></p>
+                     <p class="profile-location"><i class="fas fa-map-marker-alt"></i> Salvador, BA</p>
+                     <div class="profile-rating">
+                         <span class="stars">
+                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                         </span>
+                         <span class="rating-count">4.5 (34 avaliações)</span>
+                     </div>
+                     <div class="profile-actions">
+                         <a href="#" class="btn btn-accent"><i class="fas fa-envelope"></i> Contratar</a>
+                         <a href="#" class="btn btn-outline"><i class="fas fa-comment-alt"></i> Enviar Mensagem</a>
+                     </div>
+                 </div>
+             </div>
+         </section>
+ 
+         <nav class="profile-nav">
+             <ul>
+                 <li><a href="#" class="active">Sobre</a></li>
+                 <li><a href="#">Serviços</a></li>
+                 <li><a href="#">Portfólio</a></li>
+                 <li><a href="#">Avaliações</a></li>
+             </ul>
+         </nav>
+ 
+         <div class="profile-content">
+             <div class="main-content">
+                 <section class="about-section">
+                     <h3 class="section-title">Sobre Mim</h3>
+                     <p class="about-text">Designer gráfico criativa e apaixonada por transformar ideias em visuais impactantes. Especialista em branding, design de UI/UX e ilustrações. Com 5 anos de experiência, busco sempre as melhores soluções para comunicar a essência de cada projeto. Sou detalhista, proativa e estou sempre em busca de novos desafios para aprimorar minhas habilidades.</p>
+                     
+                     <div class="skills-container">
+                         <div class="skill-category">
+                             <h4>Design Gráfico</h4>
+                             <div class="skills-list">
+                                 <span class="skill-tag">Photoshop</span>
+                                 <span class="skill-tag">Illustrator</span>
+                                 <span class="skill-tag">InDesign</span>
+                                 <span class="skill-tag">CorelDRAW</span>
+                                 <span class="skill-tag">Branding</span>
+                                 <span class="skill-tag">Identidade Visual</span>
+                             </div>
+                         </div>
+                         <div class="skill-category">
+                             <h4>UI/UX</h4>
+                             <div class="skills-list">
+                                 <span class="skill-tag">Figma</span>
+                                 <span class="skill-tag">Sketch</span>
+                                 <span class="skill-tag">Adobe XD</span>
+                                 <span class="skill-tag">Wireframing</span>
+                                 <span class="skill-tag">Prototipagem</span>
+                             </div>
+                         </div>
+                         <div class="skill-category">
+                             <h4>Outras Habilidades</h4>
+                             <div class="skills-list">
+                                 <span class="skill-tag">Ilustração Digital</span>
+                                 <span class="skill-tag">Motion Graphics (básico)</span>
+                                 <span class="skill-tag">Edição de Vídeo (básico)</span>
+                             </div>
+                         </div>
+                     </div>
+                 </section>
+ 
+                 <section class="services-section">
+                     <h3 class="section-title">Meus Serviços</h3>
+                     <div class="service-card">
+                         <h4 class="service-title">Criação de Logotipo e Identidade Visual</h4>
+                         <p class="service-description">Desenvolvimento completo de logotipo e elementos visuais que representam a essência da sua marca, incluindo manual de marca.</p>
+                         <p class="service-price">R$ 800 - R$ 2.500</p>
+                         <div class="service-meta">
+                             <span><i class="fas fa-clock"></i> Prazo médio: 7-15 dias</span>
+                             <span><i class="fas fa-briefcase"></i> 12 projetos concluídos</span>
+                         </div>
+                     </div>
+                     <div class="service-card">
+                         <h4 class="service-title">Design de Interface (UI/UX)</h4>
+                         <p class="service-description">Criação de layouts intuitivos e otimizados para websites e aplicativos, com foco na experiência do usuário.</p>
+                         <p class="service-price">R$ 1.200 - R$ 4.000</p>
+                         <div class="service-meta">
+                             <span><i class="fas fa-clock"></i> Prazo médio: 15-30 dias</span>
+                             <span><i class="fas fa-briefcase"></i> 8 projetos concluídos</span>
+                         </div>
+                     </div>
+                 </section>
+ 
+                 <section class="portfolio-section">
+                     <h3 class="section-title">Portfólio</h3>
+                     <div class="portfolio-grid">
+                         <div class="portfolio-item">
+                             <img src="http://googleusercontent.com/image_collection/image_retrieval/15531352167162660964" alt="Projeto A" class="portfolio-img">
+                             <div class="portfolio-overlay">
+                                 <h4>Projeto A: Branding Startup Tech</h4>
+                                 <p>Criação de identidade visual completa para nova startup de tecnologia.</p>
+                             </div>
+                         </div>
+                         <div class="portfolio-item">
+                             <img src="http://googleusercontent.com/image_collection/image_retrieval/2859048615499235184" alt="Projeto B" class="portfolio-img">
+                             <div class="portfolio-overlay">
+                                 <h4>Projeto B: UI App Fitness</h4>
+                                 <p>Design de interface para aplicativo móvel de acompanhamento de exercícios.</p>
+                             </div>
+                         </div>
+                         <div class="portfolio-item">
+                             <img src="http://googleusercontent.com/image_collection/image_retrieval/18207800276522517191" alt="Projeto C" class="portfolio-img">
+                             <div class="portfolio-overlay">
+                                 <h4>Projeto C: Ilustrações Infantis</h4>
+                                 <p>Série de ilustrações para livro didático infantil.</p>
+                             </div>
+                         </div>
+                         <div class="portfolio-item">
+                             <img src="http://googleusercontent.com/image_collection/image_retrieval/880037771779118427" alt="Projeto D" class="portfolio-img">
+                             <div class="portfolio-overlay">
+                                 <h4>Projeto D: Redesign Website E-commerce</h4>
+                                 <p>Redesign completo da experiência do usuário e interface para loja online.</p>
+                             </div>
+                         </div>
+                     </div>
+                 </section>
+ 
+                 <section class="reviews-section">
+                     <h3 class="section-title">Avaliações</h3>
+                     <div class="review-card">
+                         <div class="review-header">
+                             <div class="reviewer">
+                                 <img src="http://googleusercontent.com/image_collection/image_retrieval/13556766669617115211" alt="João S." class="reviewer-img">
+                                 <span class="reviewer-name">João S.</span>
+                             </div>
+                             <span class="review-date">10 de Maio, 2025</span>
+                         </div>
+                         <div class="review-rating">
+                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                         </div>
+                         <p class="review-text">"Ana entregou um trabalho excepcional no logotipo da minha empresa. Rápida, profissional e superou minhas expectativas. Recomendo!"</p>
+                     </div>
+                     <div class="review-card">
+                         <div class="review-header">
+                             <div class="reviewer">
+                                 <img src="http://googleusercontent.com/image_collection/image_retrieval/12704577453335282284" alt="Maria P." class="reviewer-img">
+                                 <span class="reviewer-name">Maria P.</span>
+                             </div>
+                             <span class="review-date">28 de Abril, 2025</span>
+                         </div>
+                         <div class="review-rating">
+                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                         </div>
+                         <p class="review-text">"Muito satisfeita com o design do meu aplicativo. Ana foi muito atenciosa e conseguiu traduzir minhas ideias em uma interface linda e funcional."</p>
+                     </div>
+                 </section>
+             </div>
+ 
+             <div class="sidebar">
+                 <div class="sidebar-card price-card">
+                     <h3 class="sidebar-title">Taxa Horária</h3>
+                     <p class="hourly-rate">R$ 75/hora</p>
+                     <p class="price-note">Valor médio, pode variar conforme a complexidade do projeto.</p>
+                     <a href="#" class="btn btn-accent">Solicitar Orçamento</a>
+                 </div>
+ 
+                 <div class="sidebar-card">
+                     <h3 class="sidebar-title">Disponibilidade</h3>
+                     <div class="availability-item">
+                         <span class="day">Segunda-feira</span>
+                         <span class="status available">Disponível</span>
+                     </div>
+                     <div class="availability-item">
+                         <span class="day">Terça-feira</span>
+                         <span class="status available">Disponível</span>
+                     </div>
+                     <div class="availability-item">
+                         <span class="day">Quarta-feira</span>
+                         <span class="status unavailable">Indisponível</span>
+                     </div>
+                     <div class="availability-item">
+                         <span class="day">Quinta-feira</span>
+                         <span class="status available">Disponível</span>
+                     </div>
+                     <div class="availability-item">
+                         <span class="day">Sexta-feira</span>
+                         <span class="status available">Disponível</span>
+                     </div>
+                 </div>
+ 
+                 <div class="sidebar-card">
+                     <h3 class="sidebar-title">Informações de Contato</h3>
+                     <div class="contact-info">
+                         <div class="contact-item">
+                             <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                             <span>ana.silva@email.com</span>
+                         </div>
+                         <div class="contact-item">
+                             <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                             <span>(71) 98765-4321</span>
+                         </div>
+                         <div class="contact-item">
+                             <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                             <a href="#" style="text-decoration: none; color: var(--dark);">linkedin.com/in/anasilva</a>
+                         </div>
+                     </div>
+                 </div>
+ 
+                 <div class="ad-container">
+                     <p class="ad-title">Anúncio</p>
+                     <div class="ad-content">
+                         <img src="http://googleusercontent.com/image_collection/image_retrieval/15384846164430221582" alt="Anúncio UniEduca" class="ad-banner">
+                         <p class="ad-text">Faça sua pós-graduação online na UniEduca! Flexibilidade e qualidade.</p>
+                         <a href="#" class="ad-link">Saiba Mais</a>
+                     </div>
+                 </div>
+ 
+                 <div class="ad-container">
+                     <p class="ad-title">Universidades Parceiras</p>
+                     <div class="ad-content">
+                         <img src="http://googleusercontent.com/image_collection/image_retrieval/253170710436855554" alt="Anúncio Universidade Global" class="ad-banner">
+                         <p class="ad-text">Descubra os cursos de graduação e pós da Universidade Global. Inscrições abertas!</p>
+                         <a href="#" class="ad-link">Visitar Site</a>
+                     </div>
+                 </div>
+ 
+                 <div class="ad-container">
+                     <p class="ad-title">Estude com Desconto</p>
+                     <div class="ad-content">
+                         <img src="http://googleusercontent.com/image_collection/image_retrieval/17179331377276376430" alt="Anúncio Faculdade do Futuro"
